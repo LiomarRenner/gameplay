@@ -3,10 +3,14 @@ import { View, Text } from 'react-native';
 
 import { styles } from './styles';
 import { theme } from '../../global/styles/theme';
+import { Avatar } from '../Avatar';
 
 export function Profile() {
   return (
     <View style={styles.container}>
+      <Avatar 
+        urlImage="https://github.com/LiomarRenner.png"
+      />
 
       <View>
         <View style={styles.user}>
