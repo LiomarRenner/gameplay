@@ -1,5 +1,5 @@
 // expo v40:
-const { getDefaultConfig } = require("@expo/metro-config");
+//const { getDefaultConfig } = require("@expo/metro-config");
 
 // expo v41: 
 // remove the @ (see: https://blog.expo.io/expo-sdk-41-12cc5232f2ef)
