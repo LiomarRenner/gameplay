@@ -12,7 +12,7 @@ type CategorySelectedProps = {
   setCategory: (categoryId: string) => void; 
 }
 
-export function CategorySelect({ categorySelected, setCategory }: CategorySelectedProps) {
+export function CategorySelect({categorySelected, setCategory}: CategorySelectedProps) {
   return(
     <ScrollView
       horizontal 
@@ -22,7 +22,6 @@ export function CategorySelect({ categorySelected, setCategory }: CategorySelect
     >
       {
         categories.map(category => (
-          //call Category component
           <Category 
             key={category.id}
             title={category.title}
