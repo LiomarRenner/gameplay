@@ -1,18 +1,33 @@
 import React from 'react';
-import { SignIn } from './src/screens/SignIn'
-import { StyleSheet, View } from 'react-native';
+import { StatusBar } from 'react-native';
+import { useFonts } from 'expo-font';
+import { Rajdhani_500Medium, Rajdhani_700Bold } from '@expo-google-fonts/rajdhani';
+import { Inter_400Regular, Inter_500Medium } from '@expo-google-fonts/inter';
+import AppLoading from 'expo-app-loading';
+
+import { Routes } from './src/routes';
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Rajdhani_700Bold,
+    Rajdhani_500Medium,
+    Inter_400Regular,
+    Inter_500Medium
+  });
+
+  if(!fontsLoaded)
+    return <AppLoading />
+
   return (
-    <View style={styles.container}>
-      <SignIn />
-    </View>
+    <>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
+      <Routes />
+    </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
+
