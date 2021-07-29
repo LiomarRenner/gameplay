@@ -12,6 +12,8 @@ import {
 import { styles } from './styles';
 import { theme } from '../../global/styles/theme';
 
+import { Guilds } from '../Guilds';
+
 import { Background } from '../../components/Background';
 import { Header } from '../../components/Header';
 import { CategorySelect } from '../../components/CategorySelect';
@@ -19,9 +21,23 @@ import { GuildIcon } from '../../components/GuildIcon';
 import { SmallInput } from '../../components/SmallInput';
 import { TextArea } from '../../components/TextArea';
 import { Button } from '../../components/Button';
+import { ModalView } from '../../components/ModalView';
+import { GuildProps } from '../../components/Guild';
 
 export function AppointmentCreate() {
   const [category, setCategory] = useState('');
+  const [openGuildsModal, setOpenGuildsModal] = useState(false);
+  const [guild, setGuild] = useState<GuildProps>({} as GuildProps);
+
+  function handleOpenGuilds(){
+    setOpenGuildsModal(true);
+  }
+
+  function handleOpenGuildSelect(guildSelect: GuildProps){
+    setGuild(guildSelect);
+    setOpenGuildsModal(true);
+  }
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -45,7 +61,7 @@ export function AppointmentCreate() {
         />
 
         <View style={styles.form}>
-          <RectButton>
+          <RectButton onPress={handleOpenGuilds}>
             <View style={styles.select}>
               {
                 /*<View style={styles.image} />*/
@@ -108,6 +124,10 @@ export function AppointmentCreate() {
         </View>
         {/*</Background>*/}
       </ScrollView>
+      
+      <ModalView visible={openGuildsModal}>
+        <Guilds />
+      </ModalView>
     </KeyboardAvoidingView>
   );
 }
