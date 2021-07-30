@@ -37,7 +37,7 @@ export function AppointmentCreate() {
     setGuild(guildSelect);
     setOpenGuildsModal(false);
   }
-
+  
   return (
     <KeyboardAvoidingView
       style={styles.container}
