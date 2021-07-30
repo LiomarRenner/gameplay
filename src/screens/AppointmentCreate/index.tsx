@@ -29,6 +29,10 @@ export function AppointmentCreate() {
   const [openGuildsModal, setOpenGuildsModal] = useState(false);
   const [guild, setGuild] = useState<GuildProps>({} as GuildProps);
 
+  function handleCloseGuilds(){
+    setOpenGuildsModal(true);
+  }
+
   function handleOpenGuilds(){
     setOpenGuildsModal(true);
   }
@@ -126,7 +130,7 @@ export function AppointmentCreate() {
         {/*</Background>*/}
       </ScrollView>
       
-      <ModalView visible={openGuildsModal}>
+      <ModalView visible={openGuildsModal} closeModal={handleCloseGuilds}>
         <Guilds handleGuildSelected={handleGuildSelect}/>
       </ModalView>
     </KeyboardAvoidingView>
