@@ -33,9 +33,9 @@ export function AppointmentCreate() {
     setOpenGuildsModal(true);
   }
 
-  function handleOpenGuildSelect(guildSelect: GuildProps){
+  function handleGuildSelect(guildSelect: GuildProps){
     setGuild(guildSelect);
-    setOpenGuildsModal(true);
+    setOpenGuildsModal(false);
   }
 
   return (
@@ -64,11 +64,12 @@ export function AppointmentCreate() {
           <RectButton onPress={handleOpenGuilds}>
             <View style={styles.select}>
               {
-                /*<View style={styles.image} />*/
-                <GuildIcon />
+                guild.icon ? <GuildIcon /> : <View style={styles.image} />
               }
               <View style={styles.selectBody}>
-                <Text style={styles.label}> Selecione um servidor </Text>
+                <Text style={styles.label}> 
+                  { guild.name ? guild.name : 'Selecione um servidor'} 
+                </Text>
               </View>
 
               <Feather
@@ -126,7 +127,7 @@ export function AppointmentCreate() {
       </ScrollView>
       
       <ModalView visible={openGuildsModal}>
-        <Guilds />
+        <Guilds handleGuildSelected={handleGuildSelect}/>
       </ModalView>
     </KeyboardAvoidingView>
   );
