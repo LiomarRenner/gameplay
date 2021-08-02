@@ -10,8 +10,12 @@ export const styles = StyleSheet.create({
         color: theme.colors.heading,
         fontFamily: theme.fonts.text400,
         fontSize: 13,
-        textAlign: 'center',
+        paddingHorizontal: 16,
+        paddingTop: 16,
+        textAlignVertical: 'top',
         marginRight: 4,
+        borderWidth: 1,
+        borderColor: theme.colors.secondary50
         
     },
 })

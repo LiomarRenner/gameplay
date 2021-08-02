@@ -30,7 +30,8 @@ export const styles = StyleSheet.create({
         height: 68,
         borderRadius: 8,
         borderWidth: 1,
-        backgroundColor: theme.colors.secondary50
+        backgroundColor: theme.colors.secondary40,
+        borderColor: theme.colors.secondary50
     },
     selectBody: {
         flex: 1,
