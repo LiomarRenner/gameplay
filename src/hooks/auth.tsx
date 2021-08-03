@@ -51,7 +51,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
             if(type === "success"){
                 api.defaults.headers.authorization = `Bearer ${params.access_token}`;
-                const userInfo = await api.get('/user/@me');
+                const userInfo = await api.get('/users/@me');
 
                 const firstName = userInfo.data.username.split('')[0];
                 userInfo.data.avatar = `${CDN_IMAGE}/avatars/${userInfo.data.id}/${userInfo.data.avatar}.png`;
