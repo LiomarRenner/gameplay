@@ -21,11 +21,18 @@ type User = {
 
 type AuthContextData = {
     user: User;
+    loading: boolean;
     signIn: () => Promise<void>;
 }
 
 type AuthProviderProps = {
     children: ReactNode;
+}
+
+type AuthorizationResponse = AuthSession.AuthSessionResult & {
+    params: {
+        acess_token: string;
+    }
 }
 
 export const AuthContext = createContext({} as AuthContextData );
@@ -40,10 +47,16 @@ function AuthProvider({ children }: AuthProviderProps) {
 
             const authUrl = `${api.defaults.baseURL}/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`;
 
-            AuthSession
-            .startAsync({ authUrl })
-        } catch (error) {
-            
+            const { type, params } = await AuthSession.startAsync({ authUrl }) as AuthorizationResponse;
+
+            if(type === "success"){
+                api.defaults.headers.authorization = `Bearer ${params.acess_token}`;
+                const userInfo = await api.get('/user/@me');
+
+                setLoading(false);
+            }
+        } catch {
+           throw new Error('Não foi possível autenticar') 
         }
     }
 
@@ -51,6 +64,7 @@ function AuthProvider({ children }: AuthProviderProps) {
         <AuthContext.Provider value={{
             user,
             signIn,
+            loading,
         }}>
             { children }
         </AuthContext.Provider>
