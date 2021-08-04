@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FlatList, View } from 'react-native';
 import { Guild, GuildProps } from '../../components/Guild';
 import { ListDivider } from '../../components/ListDivider';
@@ -10,14 +10,8 @@ type Props = {
 }
 
 export function Guilds({ handleGuildSelected }: Props) {
-  const guilds = [
-    {
-      id:'1',
-      name:'Lendários',
-      icon: 'image.png',
-      owner: true
-    }
-  ];
+  const [guilds, setGuilds] = useState<GuildProps[]>([]);
+  const [loading, setLoading] = useState(true);
 
   return(
     <View style={styles.container}>
