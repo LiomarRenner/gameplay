@@ -33,7 +33,6 @@ type GuildWidget = {
   name: string;
   instant_invite: string;
   members: MemberProps[];
-  presence_count: number;
 }
 
 export function AppointmentDetails() {
@@ -94,7 +93,7 @@ export function AppointmentDetails() {
         <>
           <ListHeader
             title="Jogadores"
-            subtitle="Total 3"
+            subtitle={`Total ${widget.members.length}`}
           />
 
           <FlatList
